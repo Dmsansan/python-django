@@ -9,4 +9,7 @@ ENGINE = create_engine('mysql://root:root@127.0.0.1:3306/CHPA_1806')  # 创建�
 def index(request):
     sql = "Select * from data"  # 标准sql语句，此处为测试返回数据库data表的数据条目n，之后可以用python处理字符串的方式动态扩展
     df = pd.read_sql_query(sql, ENGINE)  # 将sql语句结果读取至Pandas Dataframe
-    return HttpResponse(df.to_html())  # 渲染，这里暂时渲染为最简单的HttpResponse，以后可以扩展
+    context = {'data': df }
+    return render(request, 'chpa_data/display.html', context)
+    # return render(request, 'chpa_data/index.html', context)
+    # return HttpResponse(df.to_html())  # 渲染，这里暂时渲染为最简单的HttpResponse，以后可以扩展

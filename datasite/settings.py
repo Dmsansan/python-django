@@ -118,4 +118,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' # 静态文件夹相对于工程根目录的相对位置
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)  # 该语句建议保留，对低版本的Django也是指明静态文件的位置，后续版本有功能改变
